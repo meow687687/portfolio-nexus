@@ -75,7 +75,7 @@ Most recent validation after implementation and content edits:
 - Final HTML contains route-specific title/description/Open Graph/Twitter title and description; Twitter card is `summary`. Canonical and social-image URLs remain unset until a canonical domain is approved.
 - GitHub profile responded HTTP 200. LinkedIn responded HTTP 999 (blocked); link ownership/validity remains unconfirmed. External repository evidence links were not individually checked for reachability.
 - No automated tests or test script are configured; repository/project-specific tests were not run. npm audit during prior install reported 7 moderate vulnerabilities; dependencies were not changed to address them.
-- The portfolio directory is not a Git repository, so `git status` is unavailable here.
+- Git repository initialized on `main`; the initial portfolio commit was pushed to `origin/main`. The local working tree was clean after the push, before the follow-up context update below.
 - Follow-up layout/performance check (2026-11-14): production browser check across all five routes at 320, 375, 768, 1024, and 1440px found no overflow or overlap among visible headings/paragraphs after the homepage card-layout correction. A Next dev run emitted a slow-filesystem warning (581ms benchmark); initial route compile was 2.8s, warm route responses 0.08–1.5s. Isolated production build completed in 11.3s (compiler segment 1.3s); the build run concurrently with `next dev` took 50.6s and is not a clean standalone benchmark.
 - Latest redesign checks (2026-11-13): `npm run lint`, `npx tsc --noEmit`, and an isolated `npm run build` passed. An initial temp build using an external `node_modules` symlink failed because Turbopack enforces the configured workspace root; the retry with dependencies copied inside the temporary workspace succeeded. Browser QA has not been run: server detection found `localhost:3001` and `localhost:8080`; ask which to test before interacting with either. The temporary build preview on `127.0.0.1:3221` was stopped.
 
@@ -85,7 +85,7 @@ Most recent validation after implementation and content edits:
 - `docs/content-audit.md` is absent. The four listed projects remain a provisional shortlist pending an approved content audit.
 - `docs/design-spec.md` and `docs/implementation-plan.md` remain absent.
 - Domain/hosting not selected. Canonical URLs, `og:url`, and a social preview image remain unset pending domain approval.
-- GitHub push is pending: the local directory has no `.git`; `https://github.com/meow687687/portfolio-nexus.git` exists and exposes no refs, with API default branch `main`. `gh` reports authenticated user `meow687687` has push permission. Before initializing/committing, ask whether to push a feature branch (`meow687687/feat/initial-portfolio-push`) or authorize an initial commit directly to `main`.
+- Portfolio source is pushed to `https://github.com/meow687687/portfolio-nexus.git` on `main`. The local agent-only `.commandcode/` notes were excluded from the public repository via `.git/info/exclude`.
 - No `.claude/settings.json` attribution setting was found; do not add a `Co-Authored-By` trailer.
 - Kiln license conflict remains unresolved; display as unavailable.
 - README-documented feature claims remain labeled as documentation claims. The broader profile-language claims are not fully verified beyond reviewed repository listings/files.
@@ -187,5 +187,7 @@ Most recent validation after implementation and content edits:
 
 - Checked the local repository state and the requested GitHub destination. `/home/sumeet/portfolio` has no `.git`; GitHub reports `meow687687/portfolio-nexus` as public with default branch `main`, no refs visible through `git ls-remote`, and push permission for the authenticated user `meow687687`.
 - No repository was initialized and no files were committed or pushed. The required branch choice is awaiting user confirmation: use `meow687687/feat/initial-portfolio-push` or explicitly authorize an initial push to `main`.
-- Updated `CONTEXT.md` only. No website files changed; no tests/build were run. No commit attribution trailer should be added without the project setting.
+- The user authorized a direct push to `main`. Initialized the repository on `main`, configured `origin`, and used the project's push workflow to create and push initial commit `e76283e` (`feat: Add Sumeet Basfore portfolio`). The public repository now contains the site, project docs, `AGENTS.md`, and `CONTEXT.md`; local `.commandcode/` agent notes were excluded.
+- Validation before commit passed: `npm run lint`, `npx tsc --noEmit`, and `npm run build`; static output contains the five requested routes and framework `_not-found`. `git ls-remote --heads origin main` confirmed remote SHA `e76283e71fff5836c03757d09fb7c3c3a8569913`; `git status` was clean after the initial push.
+- Follow-up `CONTEXT.md` update records the completed push. No deployment occurred. No `Co-Authored-By` trailer was added because no project attribution setting is present.
 
